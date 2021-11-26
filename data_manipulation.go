@@ -152,31 +152,6 @@ func IpIncrement(ip net.IP) {
 	}
 }
 
-// StrToWords returns a list of strings which was split by spaces.
-func StrToWords(s string) []string {
-	words := []string{}
-	gr := strings.Split(s, " ")
-	for x := range gr {
-		z := gr[x]
-		if len(z) != 0 {
-			words = append(words, z)
-		}
-	}
-	return words
-}
-
-// RemoveNewLines removes possible newlines from a string.
-func RemoveNewlines(s string) string {
-	re := regexp.MustCompile(`\r?\n`)
-	s = re.ReplaceAllString(s, " ")
-	return s
-}
-
-// FullRemove removes all instances of a string from another string.
-func FullRemove(str string, to_remove string) string {
-	return strings.Replace(str, to_remove, "", -1)
-}
-
 // RemoveDuplicatesStr returns an array of strings that are unique to each other.
 func RemoveDuplicatesStr(slice []string) []string {
 	keys := make(map[string]bool)
@@ -203,16 +178,4 @@ func RemoveDuplicatesInt(slice []int) []int {
 		}
 	}
 	return list
-}
-
-// ContainsAny checks if a string exists within a list of strings.
-func ContainsAny(str string, elements []string) bool {
-	for element := range elements {
-		e := elements[element]
-		if strings.Contains(str, e) {
-			return true
-		}
-	}
-
-	return false
 }
