@@ -167,17 +167,6 @@ func FilePermissions(filename string) (bool, bool) {
 	return read_permission, write_permission
 }
 
-// Exists checks if a given file is in the system.
-func Exists(file string) bool {
-	_, err := os.Stat(file)
-	if err != nil {
-		if errors.Is(err, fs.ErrNotExist) {
-			return false
-		}
-	}
-	return true
-}
-
 // IsRoot checks if the current user is the administrator of the machine.
 func IsRoot() bool {
 	return isRoot()
