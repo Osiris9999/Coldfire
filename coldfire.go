@@ -91,18 +91,6 @@ func PrintWarning(msg string) {
 	fmt.Printf("[%s] %s :: %s \n", Yellow(t), Yellow(Bold("[!]")), msg)
 }
 
-// FileToSlice reads a textfile and returns all lines as an array.
-func FileToSlice(file string) []string {
-	fil, _ := os.Open(file)
-	defer fil.Close()
-	var lines []string
-	scanner := bufio.NewScanner(fil)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-	return lines
-}
-
 // Alloc allocates memory without use.
 func Alloc(size string) {
 	// won't this be immidiatly garbage collected?
