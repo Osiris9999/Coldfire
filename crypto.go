@@ -87,31 +87,11 @@ func DecryptString(encrypted_message []byte, key []byte) string {
 	return string(DecryptBytes(encrypted_message, key))
 }
 
-// MD5Hash hashes a given string using the MD5.
-func MD5Hash(str string) string {
-	hasher := md5.New()
-	hasher.Write([]byte(str))
-
-	return hex.EncodeToString(hasher.Sum(nil))
-}
-
 //SHA1Hash hashes a given string using the SHA1.
 func SHA1Hash(str string) string {
 	hasher := sha1.New()
 	hasher.Write([]byte(str))
 	return hex.EncodeToString(hasher.Sum(nil))
-}
-
-// B64D decodes a given string encoded in Base64.
-func B64D(str string) string {
-	raw, _ := base64.StdEncoding.DecodeString(str)
-
-	return fmt.Sprintf("%s", raw)
-}
-
-// B64E encodes a string in Base64.
-func B64E(str string) string {
-	return base64.StdEncoding.EncodeToString([]byte(str))
 }
 
 func R13(data string) string{
