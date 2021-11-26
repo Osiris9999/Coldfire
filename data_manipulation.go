@@ -152,28 +152,6 @@ func IpIncrement(ip net.IP) {
 	}
 }
 
-// Revert returns a reversed string.
-func Revert(s string) string {
-	r := []rune(s)
-	for i, j := 0, len(r)-1; i < len(r)/2; i, j = i+1, j-1 {
-		r[i], r[j] = r[j], r[i]
-	}
-	return string(r)
-}
-
-// Contains is used to check if an element exists in an array type agnostically.
-func Contains(s interface{}, elem interface{}) bool {
-	arrV := reflect.ValueOf(s)
-	if arrV.Kind() == reflect.Slice {
-		for i := 0; i < arrV.Len(); i++ {
-			if arrV.Index(i).Interface() == elem {
-				return true
-			}
-		}
-	}
-	return false
-}
-
 // StrToWords returns a list of strings which was split by spaces.
 func StrToWords(s string) []string {
 	words := []string{}
@@ -185,41 +163,6 @@ func StrToWords(s string) []string {
 		}
 	}
 	return words
-}
-
-// SizeToBytes converts a human friendly string indicating size into a proper integer.
-func SizeToBytes(size string) int {
-	period_letter := string(size[len(size)-1])
-	intr := string(size[:len(size)-1])
-	i, _ := strconv.Atoi(intr)
-	switch period_letter {
-	case "g":
-		return i * 1024 * 1024 * 1024
-	case "m":
-		return i * 1024 * 1024
-	case "k":
-		return i * 1024
-	}
-	return i
-}
-
-// IntervalToSeconds converts a human friendly string indicating time into a proper integer.
-func IntervalToSeconds(interval string) int {
-	period_letter := string(interval[len(interval)-1])
-	intr := string(interval[:len(interval)-1])
-	i, _ := strconv.Atoi(intr)
-
-	switch period_letter {
-	case "s":
-		return i
-	case "m":
-		return i * 60
-	case "h":
-		return i * 3600
-	case "d":
-		return i * 24 * 3600
-	}
-	return i
 }
 
 // RemoveNewLines removes possible newlines from a string.
