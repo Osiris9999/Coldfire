@@ -16,37 +16,6 @@ import (
 	"github.com/jackpal/gateway"
 )
 
-// GetGlobalIp is used to return the global Ip address of the machine.
-func GetGlobalIp() string {
-	ip := ""
-	resolvers := []string{
-		"https://api.ipify.org?format=text",
-		"http://myexternalip.com/raw",
-		"http://ident.me",
-		"https://ifconfig.me",
-		"https://bot.whatismyipaddress.com/",
-		"ifconfig.me",
-	}
-
-	for {
-		url := RandomSelectStr(resolvers)
-		resp, err := http.Get(url)
-		if err != nil {
-			log.Printf("%v\n", err)
-		}
-		defer resp.Body.Close()
-
-		i, _ := ioutil.ReadAll(resp.Body)
-		ip = string(i)
-
-		if resp.StatusCode == 200 {
-			break
-		}
-	}
-
-	return ip
-}
-
 // GetLocalIp is used to get the local Ip address of the machine.
 func GetLocalIp() string {
 	conn, _ := net.Dial("udp", "8.8.8.8:80")
