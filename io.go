@@ -9,38 +9,6 @@ import (
 	"strings"
 )
 
-// ReadFile is used to read a given file and return its data as a string.
-func ReadFile(filename string) (string, error) {
-	f, err := os.Open(filename)
-	if err != nil {
-		return "", err
-	}
-	defer f.Close()
-
-	b, err := ioutil.ReadAll(f)
-	if err != nil {
-		return "", err
-	}
-
-	return string(b), nil
-}
-
-// WriteFile is used to write data into a given file.
-func WriteFile(filename, data string) error {
-	file, err := os.Create(filename)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	_, err = io.WriteString(file, data)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // FilesPattern is used to return data mapped to files
 // where their filenames match a given pattern.
 func FilesPattern(directory, pattern string) (map[string]string, error) {
